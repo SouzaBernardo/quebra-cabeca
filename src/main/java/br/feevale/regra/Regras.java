@@ -1,6 +1,6 @@
 package br.feevale.regra;
 
-public class Regras {
+public interface Regras {
 
-//    public void movimentar(Quadrado quadrado);
+    void movimentar(int linha, int coluna);
 }

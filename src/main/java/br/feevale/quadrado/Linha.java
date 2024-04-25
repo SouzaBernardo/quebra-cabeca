@@ -1,13 +1,9 @@
 package br.feevale.quadrado;
 
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
-import java.util.List;
 
+@NoArgsConstructor
 public class Linha extends ArrayList<Elemento> {
-    public Linha(List<Elemento> elementos) {
-        addAll(elementos);
-    }
-    public Linha() {
-
-    }
 }
