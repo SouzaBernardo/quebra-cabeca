@@ -42,6 +42,13 @@ class QuadradoTest {
         assertPossicao(0, 1, elemento);
     }
 
+    @Test
+    public void deveAndarCorretamentePeloQuadrado2() {
+        quadrado = new Quadrado("123456708");
+        System.out.println(quadrado.getEstadosPosiveis());
+    }
+
+
     private static void assertPossicao(int linhaEsperada, int colunaEsperada, Elemento elemento) {
         Assertions.assertEquals(linhaEsperada, elemento.getPosicao().getLinha());
         Assertions.assertEquals(colunaEsperada, elemento.getPosicao().getColuna());

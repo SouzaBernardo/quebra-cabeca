@@ -11,4 +11,14 @@ import lombok.Setter;
 public class Elemento {
     private final String valor;
     private Posicao posicao;
+
+    @Override
+    public Elemento clone() {
+        return new Elemento(this.valor, this.posicao);
+    }
+
+    @Override
+    public String toString() {
+        return valor;
+    }
 }

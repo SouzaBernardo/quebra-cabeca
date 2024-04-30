@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="399038dc-00b2-4be2-8174-1b1cdd21a03f" name="Changes" comment="feat: movimentar">
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/feevale/estado/Estado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/feevale/estado/Estado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/feevale/quadrado/Elemento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/feevale/quadrado/Elemento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/feevale/quadrado/Linha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/feevale/quadrado/Linha.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/feevale/quadrado/Quadrado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/feevale/quadrado/Quadrado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/feevale/regra/Regras.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/feevale/regra/Regras.java" afterDir="false" />
+    <list default="true" id="399038dc-00b2-4be2-8174-1b1cdd21a03f" name="Changes" comment="movimentacoes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/br/feevale/quadrado/QuadradoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/br/feevale/quadrado/QuadradoTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,18 +44,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "SouzaBernardo"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SouzaBernardo&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/SouzaBernardo/quebra-cabeca.git",
-    "accountId": "df4b71c7-c055-4eda-8495-5cd595201f5e"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SouzaBernardo/quebra-cabeca.git&quot;,
+    &quot;accountId&quot;: &quot;df4b71c7-c055-4eda-8495-5cd595201f5e&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -68,34 +64,34 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Gradle.QuadradoTest.a.executor": "Run",
-    "Gradle.QuadradoTest.deveAndarCorretamentePeloQuadrado.executor": "Run",
-    "Gradle.quebra-cabeca [:Jogo.main()].executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "/Users/bepssouza/workspace/github/quebra-cabeca/src/main/java/br/feevale/Main.java",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.48735633",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Gradle.QuadradoTest.a.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.QuadradoTest.deveAndarCorretamentePeloQuadrado.executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.quebra-cabeca [:Jogo.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/bepssouza/workspace/github/quebra-cabeca/src/main/java/br/feevale/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.48735633&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -195,6 +191,8 @@
       <workItem from="1713294889864" duration="6589000" />
       <workItem from="1713373527398" duration="2493000" />
       <workItem from="1713569474458" duration="3843000" />
+      <workItem from="1714087358585" duration="2099000" />
+      <workItem from="1714251284308" duration="698000" />
     </task>
     <task id="LOCAL-00001" summary="feat: movimentar">
       <option name="closed" value="true" />
@@ -204,7 +202,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713570046488</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="movimentacoes">
+      <option name="closed" value="true" />
+      <created>1714088853306</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714088853306</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +218,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: movimentar" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: movimentar" />
+    <MESSAGE value="movimentacoes" />
+    <option name="LAST_COMMIT_MESSAGE" value="movimentacoes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

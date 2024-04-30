@@ -1,14 +1,16 @@
 package br.feevale.quadrado;
 
-import br.feevale.regra.Regras;
+import br.feevale.regra.QuadradoRegras;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@NoArgsConstructor
 @Getter
-public class Quadrado extends ArrayList<Linha> implements Regras {
+public class Quadrado extends ArrayList<Linha> implements QuadradoRegras {
 
     public static final int TAMANHO_MAXIMO_LINHA = 3;
     public static final int TAMANHO_MAXIMO_COLUNA = 3;
@@ -86,5 +88,40 @@ public class Quadrado extends ArrayList<Linha> implements Regras {
         if (direita < TAMANHO_MAXIMO_COLUNA) posicoes.add(get(linhaElemento).get(direita).getPosicao());
 
         return posicoes;
+    }
+
+    public List<Quadrado> getEstadosPosiveis() {
+        return getPosicoesValidas().stream().map(posicao -> {
+            var proximo = this.clone();
+            proximo.mover(posicao);
+            return proximo;
+        }).toList();
+    }
+
+    public String toString() {
+        StringBuilder quadrado = new StringBuilder();
+        quadrado.append("[");
+        this.forEach(quadrado::append);
+        quadrado.deleteCharAt(quadrado.length()-1);
+        return quadrado.append("]").toString();
+    }
+
+    public Quadrado clone() {
+        var novo = new Quadrado();
+        this.forEach(it -> novo.add(it.clone()));
+        novo.elemento = elemento.clone();
+        return novo;
+    }
+
+    public Long comparar(Quadrado quadrado) {
+        Long pontos = 0L;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (Objects.equals(quadrado.get(i).get(j).getValor(), this.get(j).get(j).getValor())) {
+                    pontos++;
+                }
+            }
+        }
+        return pontos;
     }
 }
