@@ -11,6 +11,22 @@ public class Jogo {
         System.out.print("Inicial: ");
         var inicial = input.nextLine();
         var quadrado = new Quadrado(inicial);
-        quadrado.movimentar(0, 1);
+        while (true) {
+
+            System.out.println(quadrado.getEstadosPosiveis());
+
+            System.out.println("Linha: ");
+            var linha = input.nextInt();
+            System.out.println("Coluna: ");
+            var coluna = input.nextInt();
+            quadrado.movimentar(linha, coluna);
+
+            if (linha == -1 || coluna == -1) {
+                return;
+            }
+
+            System.out.println(quadrado);
+        }
+
     }
 }

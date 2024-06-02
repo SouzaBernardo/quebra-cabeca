@@ -1,14 +1,17 @@
 package br.feevale.quadrado;
 
-import br.feevale.regra.Regras;
+import br.feevale.regra.QuadradoRegras;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
+@NoArgsConstructor
 @Getter
-public class Quadrado extends ArrayList<Linha> implements Regras {
+public class Quadrado extends ArrayList<Linha> implements QuadradoRegras {
 
     public static final int TAMANHO_MAXIMO_LINHA = 3;
     public static final int TAMANHO_MAXIMO_COLUNA = 3;
@@ -18,9 +21,11 @@ public class Quadrado extends ArrayList<Linha> implements Regras {
     public static final String VALOR_ELEMENTO_VAZIO = "0";
 
     private Elemento elemento;
+    private int valorHeuristico;
 
     public Quadrado(String input) {
         var inputElements = input.split("");
+        valorHeuristico = 9;
         criarLinhas(inputElements);
     }
 
@@ -86,5 +91,86 @@ public class Quadrado extends ArrayList<Linha> implements Regras {
         if (direita < TAMANHO_MAXIMO_COLUNA) posicoes.add(get(linhaElemento).get(direita).getPosicao());
 
         return posicoes;
+    }
+
+    public List<Quadrado> getEstadosPosiveis() {
+        return getPosicoesValidas().stream().map(posicao -> {
+            var proximo = this.clone();
+            proximo.mover(posicao);
+            return proximo;
+        }).toList();
+    }
+
+    public String toString() {
+        StringBuilder quadrado = new StringBuilder();
+        quadrado.append("[");
+        this.forEach(quadrado::append);
+        quadrado.deleteCharAt(quadrado.length()-1);
+        return quadrado.append("]").toString();
+    }
+
+    public Quadrado clone() {
+        var novo = new Quadrado();
+        this.forEach(it -> novo.add(it.clone()));
+        novo.elemento = elemento.clone();
+        return novo;
+    }
+
+    public Long comparar(Quadrado quadrado) {
+        Long pontos = 0L;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (Objects.equals(quadrado.get(i).get(j).getValor(), this.get(j).get(j).getValor())) {
+                    pontos++;
+                }
+            }
+        }
+        return pontos;
+    }
+
+    public void valorHeuristico(Quadrado esperado) {
+        for (int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(!this.get(i).get(j).getValor().equals(0))
+                    valorHeuristico += valorHeuristicaPorPosicao(esperado, i, j);
+            }
+        }
+
+    }
+
+
+    public int valorHeuristicaPorPosicao(Quadrado esperado, int x, int y){
+        Elemento teste = esperado.get(x).get(y);
+        Elemento atual = null;
+        for (int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(this.get(i).get(j).getValor().equals(teste.getValor()))
+                    atual = this.get(i).get(j);
+            }
+        }
+        int a = Math.abs(atual.getPosicao().getColuna() - teste.getPosicao().getColuna());
+        int b =  Math.abs(atual.getPosicao().getLinha() - teste.getPosicao().getLinha());
+
+        return a + b;
+    }
+
+    public boolean equals(Quadrado esperado){
+        for (int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(!this.get(i).get(j).getValor().equals(esperado.get(i).get(j).getValor()))
+                    return Boolean.FALSE;
+            }
+        }
+        return Boolean.TRUE;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return this.equals((Quadrado) o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), elemento, valorHeuristico);
     }
 }
