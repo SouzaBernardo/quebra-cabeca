@@ -20,9 +20,11 @@ public class Quadrado extends ArrayList<Linha> implements QuadradoRegras {
     public static final String VALOR_ELEMENTO_VAZIO = "0";
 
     private Elemento elemento;
+    private int valorHeuristico;
 
     public Quadrado(String input) {
         var inputElements = input.split("");
+        valorHeuristico = 0;
         criarLinhas(inputElements);
     }
 
@@ -123,5 +125,14 @@ public class Quadrado extends ArrayList<Linha> implements QuadradoRegras {
             }
         }
         return pontos;
+    }
+
+    public void valorHeuristico(Quadrado esperado) {
+        for (int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(!this.get(i).get(j).getValor().equals(esperado.get(i).get(j).getValor()))
+                    valorHeuristico++;
+            }
+        }
     }
 }
