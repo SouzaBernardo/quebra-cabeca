@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
@@ -24,7 +25,7 @@ public class Quadrado extends ArrayList<Linha> implements QuadradoRegras {
 
     public Quadrado(String input) {
         var inputElements = input.split("");
-        valorHeuristico = 0;
+        valorHeuristico = 9;
         criarLinhas(inputElements);
     }
 
@@ -105,7 +106,7 @@ public class Quadrado extends ArrayList<Linha> implements QuadradoRegras {
         quadrado.append("[");
         this.forEach(quadrado::append);
         quadrado.deleteCharAt(quadrado.length()-1);
-        return quadrado.append("]").toString();
+        return quadrado.append("]").append(valorHeuristico).toString();
     }
 
     public Quadrado clone() {
@@ -130,9 +131,38 @@ public class Quadrado extends ArrayList<Linha> implements QuadradoRegras {
     public void valorHeuristico(Quadrado esperado) {
         for (int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
-                if(!this.get(i).get(j).getValor().equals(esperado.get(i).get(j).getValor()))
-                    valorHeuristico++;
+                if(!this.get(i).get(j).getValor().equals(0)) // intelj se perdeu aq, precisa desse if pra não rodar o 0
+                    valorHeuristico += valorHeuristicaPorPosicao(esperado, i, j);
             }
         }
+
+    }
+
+
+    public int valorHeuristicaPorPosicao(Quadrado esperado, int x, int y){
+        //aqui eu viajei, mas a ideia e fazer a heuristica pela quantidade de posições que precisam ser trocadas do que pelo numero de acertos de posição
+        //viajei aq achei q a heuristica tava errada mas ele so ta demorando mesmo pra achar em alguns casos sla
+        Elemento teste = esperado.get(x).get(y);
+        Elemento atual = null;
+        for (int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(this.get(i).get(j).getValor().equals(teste.getValor()))
+                    atual = this.get(i).get(j);
+            }
+        }
+        int a = Math.abs(atual.getPosicao().getColuna() - teste.getPosicao().getColuna());
+        int b =  Math.abs(atual.getPosicao().getLinha() - teste.getPosicao().getLinha());
+
+        return a + b;
+    }
+
+    public boolean equals(Quadrado esperado){
+        for (int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(!this.get(i).get(j).getValor().equals(esperado.get(i).get(j).getValor()))
+                    return Boolean.FALSE;
+            }
+        }
+        return Boolean.TRUE;
     }
 }
