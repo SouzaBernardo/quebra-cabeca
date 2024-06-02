@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
@@ -24,7 +25,7 @@ public class Quadrado extends ArrayList<Linha> implements QuadradoRegras {
 
     public Quadrado(String input) {
         var inputElements = input.split("");
-        valorHeuristico = 0;
+        valorHeuristico = 9;
         criarLinhas(inputElements);
     }
 
@@ -130,9 +131,46 @@ public class Quadrado extends ArrayList<Linha> implements QuadradoRegras {
     public void valorHeuristico(Quadrado esperado) {
         for (int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
-                if(!this.get(i).get(j).getValor().equals(esperado.get(i).get(j).getValor()))
-                    valorHeuristico++;
+                if(!this.get(i).get(j).getValor().equals(0))
+                    valorHeuristico += valorHeuristicaPorPosicao(esperado, i, j);
             }
         }
+
+    }
+
+
+    public int valorHeuristicaPorPosicao(Quadrado esperado, int x, int y){
+        Elemento teste = esperado.get(x).get(y);
+        Elemento atual = null;
+        for (int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(this.get(i).get(j).getValor().equals(teste.getValor()))
+                    atual = this.get(i).get(j);
+            }
+        }
+        int a = Math.abs(atual.getPosicao().getColuna() - teste.getPosicao().getColuna());
+        int b =  Math.abs(atual.getPosicao().getLinha() - teste.getPosicao().getLinha());
+
+        return a + b;
+    }
+
+    public boolean equals(Quadrado esperado){
+        for (int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(!this.get(i).get(j).getValor().equals(esperado.get(i).get(j).getValor()))
+                    return Boolean.FALSE;
+            }
+        }
+        return Boolean.TRUE;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return this.equals((Quadrado) o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), elemento, valorHeuristico);
     }
 }
