@@ -1,8 +1,10 @@
 package br.feevale.busca;
 
+import br.feevale.quadrado.Caminho;
 import br.feevale.quadrado.Quadrado;
 import lombok.AllArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,44 +15,49 @@ import static java.lang.Boolean.TRUE;
 public class BuscaPorMelhor {
     private List<Quadrado> abertos;
     private List<Quadrado> fechados;
+    private List<Quadrado> caminho;
 
     public List<Quadrado> buscarMelhor(Quadrado esperado) {
         while (!abertos.isEmpty()) {
             var x = abertos.getFirst();
-            System.out.println(x);
             if (x.equals(esperado)) {
-                return fechados;
+                return caminho;
             } else {
+                caminho.add(x);
                 var estadosPossiveis = x.getEstadosPosiveis();
                 estadosPossiveis.forEach(estado -> {
                     if (Boolean.FALSE.equals(abertos.contains(estado)) || Boolean.FALSE.equals(fechados.contains(estado))) {
                         estado.valorHeuristico(esperado);
                         abertos.add(estado);
                     } else if (abertos.contains(estado)) {
-                        // refatorar o caminho
-//                        fechados.add(estado);
+                        refatoraCaminho(caminho, estado);
                     } else if (fechados.contains(estado)) {
-                        if (false /*se o filho foi alcancado por um caminho mais curto*/) {
+                        if (caminho.contains(estado)) {
                             fechados.remove(estado);
                             abertos.add(estado);
                         }
                     }
                 });
                 fechados.add(x);
-                abertos = abertos.stream()
-                        .filter(it -> fechados.stream().noneMatch(it::equals))
-                        .collect(Collectors.toList());;
+                abertos.removeAll(fechados);
                 reordenar();
             }
 
         }
-        return null;
+        throw new RuntimeException();
     }
 
     public void reordenar() {
         abertos.sort(Comparator.comparing(Quadrado::getValorHeuristico));
     }
 
+    public void refatoraCaminho(List<Quadrado> caminho, Quadrado quadrado){
+        int posicao = caminho.indexOf(quadrado);
+
+        List<Quadrado> listaInvalida = caminho.subList(posicao, caminho.size()-1);
+
+        caminho.removeAll(listaInvalida);
+    }
 
 
 }

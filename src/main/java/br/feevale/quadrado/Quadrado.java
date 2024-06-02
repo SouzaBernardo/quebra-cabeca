@@ -106,7 +106,7 @@ public class Quadrado extends ArrayList<Linha> implements QuadradoRegras {
         quadrado.append("[");
         this.forEach(quadrado::append);
         quadrado.deleteCharAt(quadrado.length()-1);
-        return quadrado.append("]").append(valorHeuristico).toString();
+        return quadrado.append("]").toString();
     }
 
     public Quadrado clone() {
@@ -131,7 +131,7 @@ public class Quadrado extends ArrayList<Linha> implements QuadradoRegras {
     public void valorHeuristico(Quadrado esperado) {
         for (int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
-                if(!this.get(i).get(j).getValor().equals(0)) // intelj se perdeu aq, precisa desse if pra não rodar o 0
+                if(!this.get(i).get(j).getValor().equals(0))
                     valorHeuristico += valorHeuristicaPorPosicao(esperado, i, j);
             }
         }
@@ -140,8 +140,6 @@ public class Quadrado extends ArrayList<Linha> implements QuadradoRegras {
 
 
     public int valorHeuristicaPorPosicao(Quadrado esperado, int x, int y){
-        //aqui eu viajei, mas a ideia e fazer a heuristica pela quantidade de posições que precisam ser trocadas do que pelo numero de acertos de posição
-        //viajei aq achei q a heuristica tava errada mas ele so ta demorando mesmo pra achar em alguns casos sla
         Elemento teste = esperado.get(x).get(y);
         Elemento atual = null;
         for (int i = 0; i < 3; i++){
@@ -164,5 +162,15 @@ public class Quadrado extends ArrayList<Linha> implements QuadradoRegras {
             }
         }
         return Boolean.TRUE;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return this.equals((Quadrado) o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), elemento, valorHeuristico);
     }
 }
